@@ -79,7 +79,7 @@ namespace VDS.RDF.Writing
         public void WritingOwlCharEscaping()
         {
             Graph g = new Graph();
-            FileLoader.Load(g, "resources\\charescaping.owl");
+            FileLoader.Load(g, Path.Combine("resources", "charescaping.owl"));
 
             Console.WriteLine("Original Triples");
             foreach (Triple t in g.Triples)
@@ -108,7 +108,7 @@ namespace VDS.RDF.Writing
         public void WritingHtmlWriter()
         {
             Graph g = new Graph();
-            FileLoader.Load(g, "resources\\InferenceTest.ttl");
+            FileLoader.Load(g, Path.Combine("resources", "InferenceTest.ttl"));
 
             HtmlWriter writer = new HtmlWriter();
             String data = VDS.RDF.Writing.StringWriter.Write(g, writer);
@@ -135,7 +135,7 @@ namespace VDS.RDF.Writing
         public void WritingRdfCollections()
         {
             Graph g = new Graph();
-            FileLoader.Load(g, "resources\\swrc.owl");
+            FileLoader.Load(g, Path.Combine("resources", "swrc.owl"));
             CompressingTurtleWriter ttlwriter = new CompressingTurtleWriter(WriterCompressionLevel.High);
             ttlwriter.Save(g, Console.Out);
         }

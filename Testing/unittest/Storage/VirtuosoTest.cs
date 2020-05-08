@@ -36,6 +36,7 @@ using VDS.RDF.Parsing.Handlers;
 using VDS.RDF.Query;
 using VDS.RDF.Storage;
 using VDS.RDF.Writing.Formatting;
+using System.IO;
 
 namespace VDS.RDF.Storage
 {
@@ -126,7 +127,7 @@ namespace VDS.RDF.Storage
 
                 //Add the Test Date to Virtuoso
                 Graph testData = new Graph();
-                FileLoader.Load(testData, "resources\\Turtle.ttl");
+                FileLoader.Load(testData, Path.Combine("resources", "Turtle.ttl"));
                 testData.BaseUri = new Uri("http://example.org/virtuoso/tests/null");
                 manager.SaveGraph(testData);
                 Console.WriteLine("Saved the Test Data to Virtuoso");
@@ -216,7 +217,7 @@ namespace VDS.RDF.Storage
                 //Load in our Test Graph
                 TurtleParser ttlparser = new TurtleParser();
                 Graph g = new Graph();
-                ttlparser.Load(g, "resources\\Turtle.ttl");
+                ttlparser.Load(g, Path.Combine("resources", "Turtle.ttl"));
                 g.BaseUri = new Uri("http://example.org/deleteMe");
 
                 Console.WriteLine();

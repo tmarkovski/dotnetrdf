@@ -33,6 +33,8 @@ using VDS.RDF.Parsing;
 using VDS.RDF.Query.Inference;
 using VDS.RDF.Writing;
 using VDS.RDF.Writing.Formatting;
+using System.IO;
+using StringWriter = VDS.RDF.Writing.StringWriter;
 
 namespace VDS.RDF.Parsing
 {
@@ -102,7 +104,7 @@ namespace VDS.RDF.Parsing
             StringParser.Parse(rulesGraph, rules, new Notation3Parser());
 
             Graph data = new Graph();
-            FileLoader.Load(data, "resources\\InferenceTest.ttl");
+            FileLoader.Load(data, Path.Combine("resources", "InferenceTest.ttl"));
 
             Console.WriteLine("Original Graph - " + data.Triples.Count + " Triples");
             int origCount = data.Triples.Count;
@@ -135,7 +137,7 @@ namespace VDS.RDF.Parsing
             StringParser.Parse(rulesGraph, rules, new Notation3Parser());
 
             Graph data = new Graph();
-            FileLoader.Load(data, "resources\\InferenceTest.ttl");
+            FileLoader.Load(data, Path.Combine("resources", "InferenceTest.ttl"));
 
             Console.WriteLine("Original Graph - " + data.Triples.Count + " Triples");
             int origCount = data.Triples.Count;

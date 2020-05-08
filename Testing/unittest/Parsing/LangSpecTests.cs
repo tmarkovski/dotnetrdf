@@ -38,17 +38,19 @@ namespace VDS.RDF.Parsing
 
     public class LangSpecTests
     {
-        private const string NTriplesLangSpec = "resources\\langspec.nt";
-        private const string TurtleLangSpec = "resources\\langspec.ttl";
-        private const string N3LangSpec = "resources\\langspec.n3";
-        private const string TrigLangSpec = "resources\\langspec.trig";
-        private const string NQuadsLangSpec = "resources\\langspec.nq";
+        private const string NTriplesLangSpec = "langspec.nt";
+        private const string TurtleLangSpec = "langspec.ttl";
+        private const string N3LangSpec = "langspec.n3";
+        private const string TrigLangSpec = "langspec.trig";
+        private const string NQuadsLangSpec = "langspec.nq";
 
         private IGraph _original;
         private TripleStore _store;
 
         private void EnsureTestData(String file)
         {
+            file = Path.Combine("resources", file);
+
             if (this._original == null)
             {
                 Graph g = new Graph();
@@ -90,6 +92,8 @@ namespace VDS.RDF.Parsing
         [InlineData(NQuadsLangSpec)]
         public void TestLangSpecParsing(String file)
         {
+            file = Path.Combine("resources", file);
+
             this.EnsureTestData(file);
             var def = MimeTypesHelper.GetDefinitionsByFileExtension(Path.GetExtension(file)).FirstOrDefault();
             //MimeTypeDefinition def = MimeTypesHelper.GetDefinitions(MimeTypesHelper.GetMimeTypes(Path.GetExtension(file))).FirstOrDefault();
@@ -124,6 +128,8 @@ namespace VDS.RDF.Parsing
 
         private static void DeleteLangSpec(string langSpecFile)
         {
+            langSpecFile = Path.Combine("resources", langSpecFile);
+
             if (File.Exists(langSpecFile))
             {
                 File.Delete(langSpecFile);

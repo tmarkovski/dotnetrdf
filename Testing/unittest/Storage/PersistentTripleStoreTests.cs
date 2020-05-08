@@ -31,6 +31,7 @@ using VDS.RDF.Query;
 using VDS.RDF.Update;
 using VDS.RDF.Writing;
 using StringWriter = System.IO.StringWriter;
+using System.IO;
 
 namespace VDS.RDF.Storage
 {
@@ -49,7 +50,7 @@ namespace VDS.RDF.Storage
             manager.SaveGraph(g);
 
             g = new Graph();
-            g.LoadFromFile("resources\\InferenceTest.ttl");
+            g.LoadFromFile(Path.Combine("resources", "InferenceTest.ttl"));
             g.BaseUri = new Uri(TestGraphUri2);
             g.Retract(g.Triples.Where(t => !t.IsGroundTriple).ToList());
             manager.SaveGraph(g);
@@ -128,7 +129,7 @@ namespace VDS.RDF.Storage
                 Assert.Equal(aExpected, aActual);
 
                 Graph bExpected = new Graph();
-                bExpected.LoadFromFile("resources\\InferenceTest.ttl");
+                bExpected.LoadFromFile(Path.Combine("resources", "InferenceTest.ttl"));
                 bExpected.Retract(bExpected.Triples.Where(t => !t.IsGroundTriple).ToList());
                 bExpected.BaseUri = new Uri(TestGraphUri2);
                 IGraph bActual = store[bExpected.BaseUri];

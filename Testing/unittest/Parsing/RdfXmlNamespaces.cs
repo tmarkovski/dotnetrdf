@@ -29,6 +29,7 @@ using System.Linq;
 using System.Text;
 using Xunit;
 using VDS.RDF.Parsing;
+using System.IO;
 
 namespace VDS.RDF.Parsing
 {
@@ -41,7 +42,7 @@ namespace VDS.RDF.Parsing
             Graph g = new Graph();
             try
             {
-                g.LoadFromFile("resources\\rdfxml-namespaces.rdf");
+                g.LoadFromFile(Path.Combine("resources", "rdfxml-namespaces.rdf"));
                 Assert.True(false, "Parsing should fail as namespaces are not properly defined in the RDF/XML");
             }
             catch (RdfParseException parseEx)

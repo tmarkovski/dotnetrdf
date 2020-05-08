@@ -34,6 +34,7 @@ using VDS.RDF;
 using VDS.RDF.Data.DataTables;
 using VDS.RDF.Parsing;
 using VDS.RDF.Writing.Formatting;
+using System.IO;
 
 #pragma warning disable CS1718 // Comparison made to same variable
 
@@ -49,8 +50,8 @@ namespace VDS.RDF
             Graph h = new Graph();
 
             TurtleParser ttlparser = new TurtleParser();
-            ttlparser.Load(g, "resources\\MergePart1.ttl");
-            ttlparser.Load(h, "resources\\MergePart1.ttl");
+            ttlparser.Load(g, Path.Combine("resources", "MergePart1.ttl"));
+            ttlparser.Load(h, Path.Combine("resources", "MergePart1.ttl"));
 
             Assert.Equal(g.BaseUri, h.BaseUri);
             //TestTools.CompareGraphs(g, h, true);
@@ -195,7 +196,7 @@ namespace VDS.RDF
         public void GraphSubGraphMatching()
         {
             Graph parent = new Graph();
-            FileLoader.Load(parent, "resources\\InferenceTest.ttl");
+            FileLoader.Load(parent, Path.Combine("resources", "InferenceTest.ttl"));
             Graph subgraph = new Graph();
             subgraph.NamespaceMap.Import(parent.NamespaceMap);
             subgraph.Assert(parent.GetTriplesWithSubject(parent.CreateUriNode("eg:FordFiesta")));
@@ -244,7 +245,7 @@ namespace VDS.RDF
         public void GraphSubGraphMatchingWithBNodes()
         {
             Graph parent = new Graph();
-            FileLoader.Load(parent, "resources\\Turtle.ttl");
+            FileLoader.Load(parent, Path.Combine("resources", "Turtle.ttl"));
             Graph subgraph = new Graph();
             subgraph.Assert(parent.Triples.Where(t => !t.IsGroundTriple));
 
@@ -331,7 +332,7 @@ namespace VDS.RDF
         public void GraphToDataTable()
         {
             Graph g = new Graph();
-            g.LoadFromFile("resources\\InferenceTest.ttl");
+            g.LoadFromFile(Path.Combine("resources", "InferenceTest.ttl"));
 
             DataTable table = g.ToDataTable();
 

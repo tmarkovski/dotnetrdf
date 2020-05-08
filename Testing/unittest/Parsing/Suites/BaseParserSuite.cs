@@ -66,7 +66,7 @@ namespace VDS.RDF.Parsing.Suites
 
             Parser = testParser ?? throw new ArgumentNullException("testParser");
             ResultsParser = resultsParser ?? throw new ArgumentNullException("resultsParser");
-            _baseDir = $"resources\\{baseDir}";
+            _baseDir = Path.Combine("resources", baseDir);
             _passedTests = new List<string>();
             _failedTests = new List<TestFailure>();
             _indeterminateTests = new List<string>();

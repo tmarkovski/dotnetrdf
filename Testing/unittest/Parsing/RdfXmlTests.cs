@@ -30,6 +30,8 @@ using Xunit;
 using VDS.RDF.Parsing.Handlers;
 using VDS.RDF.Writing;
 using VDS.RDF.Writing.Formatting;
+using System.IO;
+using StringWriter = VDS.RDF.Writing.StringWriter;
 
 namespace VDS.RDF.Parsing
 {
@@ -75,14 +77,14 @@ namespace VDS.RDF.Parsing
         }
 
         [Theory]
-        [InlineData(RdfXmlParserMode.DOM, "resources\\sequence.rdf")]
-        [InlineData(RdfXmlParserMode.Streaming, "resources\\sequence.rdf")]
-        [InlineData(RdfXmlParserMode.DOM, "resources\\sequence2.rdf")]
-        [InlineData(RdfXmlParserMode.Streaming, "resources\\sequence2.rdf")]
+        [InlineData(RdfXmlParserMode.DOM, "sequence.rdf")]
+        [InlineData(RdfXmlParserMode.Streaming, "sequence.rdf")]
+        [InlineData(RdfXmlParserMode.DOM, "sequence2.rdf")]
+        [InlineData(RdfXmlParserMode.Streaming, "sequence2.rdf")]
         public void ParsingRdfXml(RdfXmlParserMode parsingMode, string path)
         {
             RdfXmlParser parser = new RdfXmlParser(parsingMode);
-            this.TestRdfXmlSequence(parser, path);
+            this.TestRdfXmlSequence(parser, Path.Combine("resources", path));
         }
 
         [Fact]
@@ -91,7 +93,7 @@ namespace VDS.RDF.Parsing
             Graph g = new Graph();
             RdfXmlParser parser = new RdfXmlParser();
 
-            Assert.Throws<RdfParseException>(() => g.LoadFromFile("resources\\rdfxml-bad-property.rdf", parser));
+            Assert.Throws<RdfParseException>(() => g.LoadFromFile(Path.Combine("resources", "rdfxml-bad-property.rdf"), parser));
         }
 
         [Fact]
@@ -99,7 +101,7 @@ namespace VDS.RDF.Parsing
         {
             Graph g = new Graph();
             RdfXmlParser parser = new RdfXmlParser();
-            g.LoadFromFile("resources\\rdfxml-good-property.rdf", parser);
+            g.LoadFromFile(Path.Combine("resources", "rdfxml-good-property.rdf"), parser);
 
             Assert.False(g.IsEmpty);
             Assert.Equal(1, g.Triples.Count);
@@ -113,7 +115,7 @@ namespace VDS.RDF.Parsing
         public void ParsingRdfXmlElementUsesXmlNamespaceDom()
         {
             Graph g = new Graph();
-            g.LoadFromFile("resources\\xml-prop.rdf", new RdfXmlParser(RdfXmlParserMode.DOM));
+            g.LoadFromFile(Path.Combine("resources", "xml-prop.rdf"), new RdfXmlParser(RdfXmlParserMode.DOM));
             Assert.False(g.IsEmpty);
             Assert.Equal(1, g.Triples.Count);
         }
@@ -122,7 +124,7 @@ namespace VDS.RDF.Parsing
         public void ParsingRdfXmlElementUsesXmlNamespaceStreaming()
         {
             Graph g = new Graph();
-            g.LoadFromFile("resources\\xml-prop.rdf", new RdfXmlParser(RdfXmlParserMode.Streaming));
+            g.LoadFromFile(Path.Combine("resources", "xml-prop.rdf"), new RdfXmlParser(RdfXmlParserMode.Streaming));
             Assert.False(g.IsEmpty);
             Assert.Equal(1, g.Triples.Count);
         }
@@ -131,7 +133,7 @@ namespace VDS.RDF.Parsing
         public void ParsingRdfXmlElementUsesUndeclaredNamespaceStreaming()
         {
             Graph g = new Graph();
-            g.LoadFromFile(@"resources\missing-namespace-declarations.rdf", new RdfXmlParser(RdfXmlParserMode.Streaming));
+            g.LoadFromFile(System.IO.Path.Combine("resources", "missing-namespace-declarations.rdf"), new RdfXmlParser(RdfXmlParserMode.Streaming));
             Assert.False(g.IsEmpty);
             Assert.Equal(9, g.Triples.Count);
         }
@@ -146,7 +148,7 @@ namespace VDS.RDF.Parsing
             ChainedHandler handler = new ChainedHandler(new IRdfHandler[] { paging, counter });
 
             GZippedRdfXmlParser parser = new GZippedRdfXmlParser(RdfXmlParserMode.Streaming);
-            parser.Load(handler, @"resources\oom.rdf.gz");
+            parser.Load(handler, System.IO.Path.Combine("resources", "oom.rdf.gz"));
 
             Assert.False(g.IsEmpty);
             Assert.Equal(1000, counter.Count);
@@ -159,7 +161,7 @@ namespace VDS.RDF.Parsing
         {
             IGraph g = new Graph();
             RdfXmlParser parser = new RdfXmlParser();
-            parser.Load(g, @"resources\cogapp.rdf");
+            parser.Load(g, System.IO.Path.Combine("resources", "cogapp.rdf"));
 
             Assert.False(g.IsEmpty);
             Assert.Equal(9358, g.Triples.Count);
@@ -188,7 +190,7 @@ namespace VDS.RDF.Parsing
         {
             IGraph g = new Graph();
             var parser = new RdfXmlParser(RdfXmlParserMode.Streaming);
-            parser.Load(g, @"resources\rdfxml-defaultns-scope.xml");
+            parser.Load(g, System.IO.Path.Combine("resources", "rdfxml-defaultns-scope.xml"));
             var resourceNode = g.CreateUriNode(UriFactory.Create("http://example.org/thing/1"));
             var p1Node = g.CreateUriNode(UriFactory.Create("http://example.org/ns/b#p1"));
             var p2Node = g.CreateUriNode(UriFactory.Create("http://example.org/ns/a#p2"));
@@ -250,7 +252,7 @@ namespace VDS.RDF.Parsing
             NTriplesFormatter formatter = new NTriplesFormatter();
             RdfXmlParser domParser = new RdfXmlParser(RdfXmlParserMode.DOM);
             Graph g = new Graph();
-            domParser.Load(g, "resources\\empty-string-rdfxml.rdf");
+            domParser.Load(g, Path.Combine("resources", "empty-string-rdfxml.rdf"));
 
             Console.WriteLine("DOM Parser parsed OK");
 
@@ -262,7 +264,7 @@ namespace VDS.RDF.Parsing
 
             RdfXmlParser streamingParser = new RdfXmlParser(RdfXmlParserMode.Streaming);
             Graph h = new Graph();
-            streamingParser.Load(h, "resources\\empty-string-rdfxml.rdf");
+            streamingParser.Load(h, Path.Combine("resources", "empty-string-rdfxml.rdf"));
 
             Console.WriteLine("Streaming Parser parsed OK");
 
@@ -281,7 +283,7 @@ namespace VDS.RDF.Parsing
             NTriplesFormatter formatter = new NTriplesFormatter();
             RdfXmlParser domParser = new RdfXmlParser(RdfXmlParserMode.DOM);
             Graph g = new Graph();
-            domParser.Load(g, "resources\\urlencodes-in-rdfxml.rdf");
+            domParser.Load(g, Path.Combine("resources", "urlencodes-in-rdfxml.rdf"));
 
             foreach (Triple t in g.Triples)
             {
@@ -310,7 +312,7 @@ namespace VDS.RDF.Parsing
             NTriplesFormatter formatter = new NTriplesFormatter();
             RdfXmlParser domParser = new RdfXmlParser(RdfXmlParserMode.DOM);
             Graph g = new Graph();
-            domParser.Load(g, "resources\\urlencodes-in-rdfxml.rdf");
+            domParser.Load(g, Path.Combine("resources", "urlencodes-in-rdfxml.rdf"));
 
             foreach (Triple t in g.Triples)
             {
@@ -335,7 +337,7 @@ namespace VDS.RDF.Parsing
         public void ParsingRdfXmlElementUsesUndeclaredNamespaceDom()
         {
             Graph g = new Graph();
-            g.LoadFromFile(@"resources\missing-namespace-declarations.rdf", new RdfXmlParser(RdfXmlParserMode.DOM));
+            g.LoadFromFile(System.IO.Path.Combine("resources", "missing-namespace-declarations.rdf"), new RdfXmlParser(RdfXmlParserMode.DOM));
             Assert.False(g.IsEmpty);
             Assert.Equal(9, g.Triples.Count);
         }

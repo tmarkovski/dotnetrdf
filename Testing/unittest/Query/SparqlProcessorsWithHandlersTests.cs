@@ -165,7 +165,7 @@ namespace VDS.RDF.Query
             {
                 TripleStore store = new TripleStore();
                 Graph g = new Graph();
-                g.LoadFromFile("resources\\InferenceTest.ttl");
+                g.LoadFromFile(Path.Combine("resources", "InferenceTest.ttl"));
                 store.Add(g);
 
                 this._dataset = new InMemoryDataset(store);

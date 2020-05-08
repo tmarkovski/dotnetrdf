@@ -31,6 +31,7 @@ using Xunit;
 using VDS.RDF.Parsing;
 using VDS.RDF.Query;
 using VDS.RDF.Query.Datasets;
+using System.IO;
 
 namespace VDS.RDF.Query
 {
@@ -128,7 +129,7 @@ namespace VDS.RDF.Query
         {
             InMemoryDataset dataset = new InMemoryDataset();
             Graph g = new Graph();
-            FileLoader.Load(g, "resources\\InferenceTest.ttl");
+            FileLoader.Load(g, Path.Combine("resources", "InferenceTest.ttl"));
             dataset.AddGraph(g);
 
             return dataset;

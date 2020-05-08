@@ -41,6 +41,7 @@ using VDS.RDF.Query.Expressions.Primary;
 using VDS.RDF.Query.Filters;
 using VDS.RDF.Query.Patterns;
 using VDS.RDF.Update;
+using System.IO;
 
 namespace VDS.RDF.Query
 {
@@ -53,7 +54,7 @@ namespace VDS.RDF.Query
             //Prepare the Store
             TripleStore store = new TripleStore();
             Graph g = new Graph();
-            FileLoader.Load(g, "resources\\Turtle.ttl");
+            FileLoader.Load(g, Path.Combine("resources", "Turtle.ttl"));
             store.Add(g);
 
             SparqlQueryParser parser = new SparqlQueryParser();
@@ -297,7 +298,7 @@ SELECT * WHERE {?s ?p ?o . ?s rdfs:label ?label}");
             //Load our test data
             TripleStore store = new TripleStore();
             Graph g = new Graph();
-            FileLoader.Load(g, "resources\\InferenceTest.ttl");
+            FileLoader.Load(g, Path.Combine("resources", "InferenceTest.ttl"));
             store.Add(g);
 
             List<String> testQueries = new List<string>();
@@ -364,7 +365,7 @@ SELECT * WHERE {?s ?p ?o . ?s rdfs:label ?label}");
             //Get the Data we want to query
             TripleStore store = new TripleStore();
             Graph g = new Graph();
-            FileLoader.Load(g, "resources\\InferenceTest.ttl");
+            FileLoader.Load(g, Path.Combine("resources", "InferenceTest.ttl"));
             store.Add(g);
             //g = new Graph();
             //g.LoadFromFile("noise.ttl");
@@ -475,7 +476,7 @@ SELECT * WHERE {?s ?p ?o . ?s rdfs:label ?label}");
             //Get the Data we want to query
             TripleStore store = new TripleStore();
             Graph g = new Graph();
-            FileLoader.Load(g, "resources\\InferenceTest.ttl");
+            FileLoader.Load(g, Path.Combine("resources", "InferenceTest.ttl"));
             store.Add(g);
             //g = new Graph();
             //g.LoadFromFile("noise.ttl");

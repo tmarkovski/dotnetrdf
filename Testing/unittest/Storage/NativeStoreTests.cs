@@ -30,6 +30,7 @@ using System.Text;
 using Xunit;
 using VDS.RDF.Parsing;
 using VDS.RDF.Storage;
+using System.IO;
 
 namespace VDS.RDF
 {
@@ -43,7 +44,7 @@ namespace VDS.RDF
             //Load in our Test Graph
             TurtleParser ttlparser = new TurtleParser();
             Graph g = new Graph();
-            ttlparser.Load(g, "resources\\Turtle.ttl");
+            ttlparser.Load(g, Path.Combine("resources", "Turtle.ttl"));
 
             Console.WriteLine("Loaded Test Graph OK");
             Console.WriteLine("Test Graph contains:");

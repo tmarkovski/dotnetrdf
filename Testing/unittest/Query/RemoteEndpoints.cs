@@ -274,7 +274,7 @@ results.Dispose()
                 "Test Config marks Remote Parsing as unavailable, test cannot be run");
 
             String query;
-            using (StreamReader reader = File.OpenText("resources\\dbpedia-query-time.rq"))
+            using (StreamReader reader = File.OpenText(Path.Combine("resources", "dbpedia-query-time.rq")))
             {
                 query = reader.ReadToEnd();
                 reader.Close();
@@ -326,7 +326,7 @@ results.Dispose()
         public void SparqlRemoteEndpointSyncVsAsyncTimeOpenLinkLOD()
         {
             String query;
-            using (StreamReader reader = File.OpenText("resources\\dbpedia-query-time.rq"))
+            using (StreamReader reader = File.OpenText(Path.Combine("resources", "dbpedia-query-time.rq")))
             {
                 query = reader.ReadToEnd();
                 reader.Close();
@@ -379,7 +379,7 @@ results.Dispose()
         public void SparqlRemoteEndpointSyncVsAsyncTimeFactforge()
         {
             String query;
-            using (StreamReader reader = File.OpenText("resources\\dbpedia-query-time.rq"))
+            using (StreamReader reader = File.OpenText(Path.Combine("resources", "dbpedia-query-time.rq")))
             {
                 query = reader.ReadToEnd();
                 reader.Close();
@@ -432,7 +432,7 @@ results.Dispose()
         public void SparqlRemoteEndpointSyncVsAsyncTimeLocal()
         {
             String query;
-            using (StreamReader reader = File.OpenText("resources\\dbpedia-query-time.rq"))
+            using (StreamReader reader = File.OpenText(Path.Combine("resources", "dbpedia-query-time.rq")))
             {
                 query = reader.ReadToEnd();
                 reader.Close();

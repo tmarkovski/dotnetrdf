@@ -31,7 +31,7 @@ namespace VDS.RDF.Parsing.Handlers
 
     public class FileLoaderHandlerTests
     {
-        private const string TestDataFile = "resources\\file_loader_handler_tests_temp.ttl";
+        private readonly string TestDataFile = Path.Combine("resources", "file_loader_handler_tests_temp.ttl");
 
         public FileLoaderHandlerTests()
         {

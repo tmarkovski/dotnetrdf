@@ -30,6 +30,7 @@ using System.Linq;
 using Xunit;
 using VDS.RDF.Parsing;
 using VDS.RDF.Writing.Formatting;
+using System.IO;
 
 namespace VDS.RDF
 {
@@ -291,9 +292,9 @@ namespace VDS.RDF
         private static void TestGraphMatch(string testGraphName)
         {
             Graph a = new Graph();
-            a.LoadFromFile(string.Format("resources\\diff_cases\\{0}_a.ttl", testGraphName));
+            a.LoadFromFile(string.Format(Path.Combine("resources", "diff_cases", "{0}_a.ttl"), testGraphName));
             Graph b = new Graph();
-            b.LoadFromFile(string.Format("resources\\diff_cases\\{0}_b.ttl", testGraphName));
+            b.LoadFromFile(string.Format(Path.Combine("resources", "diff_cases", "{0}_b.ttl"), testGraphName));
 
             Assert.True(a.Equals(b));
             Assert.True(b.Equals(a));

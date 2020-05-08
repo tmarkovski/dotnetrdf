@@ -31,6 +31,7 @@ using System.Text;
 using Xunit;
 using VDS.RDF.Parsing;
 using VDS.RDF.Web;
+using System.IO;
 
 namespace VDS.RDF.Web
 {
@@ -40,7 +41,7 @@ namespace VDS.RDF.Web
         public void WebETagComputation()
         {
             Graph g = new Graph();
-            FileLoader.Load(g, "resources\\InferenceTest.ttl");
+            FileLoader.Load(g, Path.Combine("resources", "InferenceTest.ttl"));
             Stopwatch timer = new Stopwatch();
             timer.Start();
             String etag = g.GetETag();

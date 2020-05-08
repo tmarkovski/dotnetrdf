@@ -87,7 +87,7 @@ namespace VDS.RDF.Dynamic
         public void Example1()
         {
             var g = new Graph();
-            g.LoadFromFile(@"resources\rvesse.ttl");
+            g.LoadFromFile(System.IO.Path.Combine("resources", "rvesse.ttl"));
 
             var d = g.AsDynamic(UriFactory.Create("http://www.dotnetrdf.org/people#"), predicateBaseUri: UriFactory.Create("http://xmlns.com/foaf/0.1/"));
 
@@ -120,7 +120,7 @@ namespace VDS.RDF.Dynamic
         public void Example2()
         {
             var expected = new Graph();
-            expected.LoadFromFile(@"resources\Turtle.ttl");
+            expected.LoadFromFile(System.IO.Path.Combine("resources", "Turtle.ttl"));
 
             var g = new Graph();
             g.BaseUri = UriFactory.Create("http://example.org/");
@@ -210,7 +210,7 @@ namespace VDS.RDF.Dynamic
         public void Example3()
         {
             var expected = new Graph();
-            expected.LoadFromFile(@"resources\rvesse.ttl");
+            expected.LoadFromFile(System.IO.Path.Combine("resources", "rvesse.ttl"));
             var actual = new Graph();
             var d = actual.AsDynamic(UriFactory.Create("http://www.dotnetrdf.org/people#"));
 

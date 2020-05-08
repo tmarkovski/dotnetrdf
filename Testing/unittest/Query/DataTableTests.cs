@@ -29,6 +29,7 @@ using System.Linq;
 using Xunit;
 using VDS.RDF.Data.DataTables;
 using VDS.RDF.Parsing;
+using System.IO;
 
 namespace VDS.RDF.Query
 {
@@ -42,7 +43,7 @@ namespace VDS.RDF.Query
             SparqlQuery q = parser.ParseFromString(query);
 
             Graph g = new Graph();
-            FileLoader.Load(g, "resources\\InferenceTest.ttl");
+            FileLoader.Load(g, Path.Combine("resources", "InferenceTest.ttl"));
 
             Object results = g.ExecuteQuery(q);
             if (results is SparqlResultSet)
@@ -100,7 +101,7 @@ namespace VDS.RDF.Query
             SparqlQuery q = parser.ParseFromString(query);
 
             Graph g = new Graph();
-            FileLoader.Load(g, "resources\\InferenceTest.ttl");
+            FileLoader.Load(g, Path.Combine("resources", "InferenceTest.ttl"));
 
             Object results = g.ExecuteQuery(q);
             if (results is SparqlResultSet)
@@ -158,7 +159,7 @@ namespace VDS.RDF.Query
             SparqlQuery q = parser.ParseFromString(query);
 
             Graph g = new Graph();
-            FileLoader.Load(g, "resources\\InferenceTest.ttl");
+            FileLoader.Load(g, Path.Combine("resources", "InferenceTest.ttl"));
 
             Object results = g.ExecuteQuery(q);
             if (results is SparqlResultSet)
@@ -194,7 +195,7 @@ namespace VDS.RDF.Query
             SparqlQuery q = parser.ParseFromString(query);
 
             Graph g = new Graph();
-            FileLoader.Load(g, "resources\\InferenceTest.ttl");
+            FileLoader.Load(g, Path.Combine("resources", "InferenceTest.ttl"));
 
             Object results = g.ExecuteQuery(q);
             if (results is SparqlResultSet)
@@ -230,7 +231,7 @@ namespace VDS.RDF.Query
             SparqlQuery q = parser.ParseFromString(query);
 
             Graph g = new Graph();
-            FileLoader.Load(g, "resources\\InferenceTest.ttl");
+            FileLoader.Load(g, Path.Combine("resources", "InferenceTest.ttl"));
 
             Object results = g.ExecuteQuery(q);
             if (results is SparqlResultSet)
@@ -268,7 +269,7 @@ namespace VDS.RDF.Query
             SparqlQuery q = parser.ParseFromString(query);
 
             Graph g = new Graph();
-            FileLoader.Load(g, "resources\\InferenceTest.ttl");
+            FileLoader.Load(g, Path.Combine("resources", "InferenceTest.ttl"));
 
             Object results = g.ExecuteQuery(q);
             if (results is SparqlResultSet)

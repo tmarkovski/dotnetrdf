@@ -35,6 +35,7 @@ using VDS.RDF.Query.Datasets;
 using VDS.RDF.Storage;
 using VDS.RDF.Update;
 using VDS.RDF.Update.Commands;
+using System.IO;
 
 namespace VDS.RDF.Update
 {
@@ -145,7 +146,7 @@ namespace VDS.RDF.Update
         {
             TripleStore store = new TripleStore();
             Graph g = new Graph();
-            FileLoader.Load(g, "resources\\InferenceTest.ttl");
+            FileLoader.Load(g, Path.Combine("resources", "InferenceTest.ttl"));
             g.BaseUri = null;
             store.Add(g);
 

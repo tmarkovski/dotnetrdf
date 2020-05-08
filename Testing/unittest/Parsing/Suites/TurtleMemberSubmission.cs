@@ -151,7 +151,7 @@ namespace VDS.RDF.Parsing.Suites
         [Fact]
         public void ParsingTurtleOriginalPrefixedNames2()
         {
-            Parser.Load(new Graph(), @"resources\turtle\test-14.ttl");
+            Parser.Load(new Graph(), Path.Combine("resources", "turtle", "test-14.ttl"));
         }
     }
 }

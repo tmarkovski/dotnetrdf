@@ -502,11 +502,11 @@ namespace VDS.RDF.Parsing
 
         private void EnsureNIOData()
         {
-            if (!File.Exists("resources\\nio.ttl"))
+            if (!File.Exists(Path.Combine("resources", "nio.ttl")))
             {
-                using (StreamWriter writer = File.CreateText("resources\\nio.ttl"))
+                using (StreamWriter writer = File.CreateText(Path.Combine("resources", "nio.ttl")))
                 {
-                    using (StreamReader reader = File.OpenText("resources\\dataset_50.ttl.gz"))
+                    using (StreamReader reader = File.OpenText(Path.Combine("resources", "dataset_50.ttl.gz")))
                     {
                         String line = reader.ReadLine();
                         while (line != null)
@@ -536,7 +536,7 @@ namespace VDS.RDF.Parsing
                 timer.Reset();
 
                 //Test Blocking
-                BlockingTextReader blocking = ParsingTextReader.CreateBlocking(File.OpenText("resources\\nio.ttl"));
+                BlockingTextReader blocking = ParsingTextReader.CreateBlocking(File.OpenText(Path.Combine("resources", "nio.ttl")));
                 timer.Start();
                 int totalBlocking = 0;
                 int read;
@@ -555,7 +555,7 @@ namespace VDS.RDF.Parsing
                 timer.Reset();
                 int totalNonBlocking = 0;
 
-                NonBlockingTextReader nonBlocking = ParsingTextReader.CreateNonBlocking(File.OpenText("resources\\nio.ttl"));
+                NonBlockingTextReader nonBlocking = ParsingTextReader.CreateNonBlocking(File.OpenText(Path.Combine("resources", "nio.ttl")));
                 timer.Start();
                 while (!nonBlocking.EndOfStream)
                 {
@@ -591,7 +591,7 @@ namespace VDS.RDF.Parsing
                 timer.Reset();
 
                 //Test Blocking
-                BlockingTextReader blocking = ParsingTextReader.CreateBlocking(File.OpenText("resources\\nio.ttl"), 4096);
+                BlockingTextReader blocking = ParsingTextReader.CreateBlocking(File.OpenText(Path.Combine("resources", "nio.ttl")), 4096);
                 timer.Start();
                 int totalBlocking = 0;
                 int read;
@@ -610,7 +610,7 @@ namespace VDS.RDF.Parsing
                 timer.Reset();
                 int totalNonBlocking = 0;
 
-                NonBlockingTextReader nonBlocking = ParsingTextReader.CreateNonBlocking(File.OpenText("resources\\nio.ttl"), 4096);
+                NonBlockingTextReader nonBlocking = ParsingTextReader.CreateNonBlocking(File.OpenText(Path.Combine("resources", "nio.ttl")), 4096);
                 timer.Start();
                 while (!nonBlocking.EndOfStream)
                 {
@@ -648,7 +648,7 @@ namespace VDS.RDF.Parsing
                     timer.Reset();
 
                     //Test Blocking
-                    BlockingTextReader blocking = ParsingTextReader.CreateBlocking(File.OpenText("resources\\nio.ttl"), 4096);
+                    BlockingTextReader blocking = ParsingTextReader.CreateBlocking(File.OpenText(Path.Combine("resources", "nio.ttl")), 4096);
                     timer.Start();
                     int totalBlocking = 0;
                     int read;
@@ -665,7 +665,7 @@ namespace VDS.RDF.Parsing
                     timer.Reset();
                     int totalNonBlocking = 0;
 
-                    NonBlockingTextReader nonBlocking = ParsingTextReader.CreateNonBlocking(File.OpenText("resources\\nio.ttl"), 4096);
+                    NonBlockingTextReader nonBlocking = ParsingTextReader.CreateNonBlocking(File.OpenText(Path.Combine("resources", "nio.ttl")), 4096);
                     timer.Start();
                     while (!nonBlocking.EndOfStream)
                     {
@@ -703,7 +703,7 @@ namespace VDS.RDF.Parsing
                 timer.Reset();
 
                 //Test Blocking
-                BlockingTextReader blocking = ParsingTextReader.CreateBlocking(new JitterReader(File.OpenText("resources\\nio.ttl")));
+                BlockingTextReader blocking = ParsingTextReader.CreateBlocking(new JitterReader(File.OpenText(Path.Combine("resources", "nio.ttl"))));
                 timer.Start();
                 int totalBlocking = 0;
                 int read;
@@ -722,7 +722,7 @@ namespace VDS.RDF.Parsing
                 timer.Reset();
                 int totalNonBlocking = 0;
 
-                NonBlockingTextReader nonBlocking = ParsingTextReader.CreateNonBlocking(new JitterReader(File.OpenText("resources\\nio.ttl")));
+                NonBlockingTextReader nonBlocking = ParsingTextReader.CreateNonBlocking(new JitterReader(File.OpenText(Path.Combine("resources", "nio.ttl"))));
                 timer.Start();
                 while (!nonBlocking.EndOfStream)
                 {
@@ -758,7 +758,7 @@ namespace VDS.RDF.Parsing
                 timer.Reset();
 
                 //Test Blocking
-                BlockingTextReader blocking = ParsingTextReader.CreateBlocking(new JitterReader(File.OpenText("resources\\nio.ttl"), 50));
+                BlockingTextReader blocking = ParsingTextReader.CreateBlocking(new JitterReader(File.OpenText(Path.Combine("resources", "nio.ttl")), 50));
                 timer.Start();
                 int totalBlocking = 0;
                 int read;
@@ -777,7 +777,7 @@ namespace VDS.RDF.Parsing
                 timer.Reset();
                 int totalNonBlocking = 0;
 
-                NonBlockingTextReader nonBlocking = ParsingTextReader.CreateNonBlocking(new JitterReader(File.OpenText("resources\\nio.ttl"), 50));
+                NonBlockingTextReader nonBlocking = ParsingTextReader.CreateNonBlocking(new JitterReader(File.OpenText(Path.Combine("resources", "nio.ttl")), 50));
                 timer.Start();
                 while (!nonBlocking.EndOfStream)
                 {

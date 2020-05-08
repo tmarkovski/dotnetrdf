@@ -33,6 +33,7 @@ using VDS.RDF.Parsing;
 using VDS.RDF.Query;
 using VDS.RDF.Query.Datasets;
 using VDS.RDF.Writing.Formatting;
+using System.IO;
 
 namespace VDS.RDF.Query
 {
@@ -67,7 +68,7 @@ namespace VDS.RDF.Query
             Console.WriteLine();
 
             QueryableGraph g = new QueryableGraph();
-            FileLoader.Load(g, "resources\\InferenceTest.ttl");
+            FileLoader.Load(g, Path.Combine("resources", "InferenceTest.ttl"));
 
             Object results = g.ExecuteQuery(q);
             if (results is SparqlResultSet)
@@ -95,7 +96,7 @@ namespace VDS.RDF.Query
             Console.WriteLine();
 
             QueryableGraph g = new QueryableGraph();
-            FileLoader.Load(g, "resources\\InferenceTest.ttl");
+            FileLoader.Load(g, Path.Combine("resources", "InferenceTest.ttl"));
 
             Object results = g.ExecuteQuery(q);
             if (results is SparqlResultSet)
@@ -123,7 +124,7 @@ namespace VDS.RDF.Query
             Console.WriteLine();
 
             QueryableGraph g = new QueryableGraph();
-            FileLoader.Load(g, "resources\\InferenceTest.ttl");
+            FileLoader.Load(g, Path.Combine("resources", "InferenceTest.ttl"));
 
             Object results = g.ExecuteQuery(q);
             if (results is SparqlResultSet)

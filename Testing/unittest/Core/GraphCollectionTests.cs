@@ -84,8 +84,8 @@ namespace VDS.RDF
         {
             TripleStore store = new TripleStore(new DiskDemandGraphCollection());
             Graph g = new Graph();
-            g.LoadFromFile("resources\\InferenceTest.ttl");
-            g.BaseUri = new Uri("file:///" + Path.GetFullPath("resources\\InferenceTest.ttl"));
+            g.LoadFromFile(Path.Combine("resources", "InferenceTest.ttl"));
+            g.BaseUri = new Uri("file:///" + Path.GetFullPath(Path.Combine("resources", "InferenceTest.ttl")));
 
             Assert.True(store.HasGraph(g.BaseUri), "Graph Collection should contain the Graph");
             Assert.Equal(g, store[g.BaseUri]);
@@ -98,8 +98,8 @@ namespace VDS.RDF
             TripleStore store = new TripleStore(new DiskDemandGraphCollection());
 
             Graph g = new Graph();
-            g.LoadFromFile("resources\\InferenceTest.ttl");
-            g.BaseUri = new Uri("file:///" + Path.GetFullPath("resources\\InferenceTest.ttl"));
+            g.LoadFromFile(Path.Combine("resources", "InferenceTest.ttl"));
+            g.BaseUri = new Uri("file:///" + Path.GetFullPath(Path.Combine("resources", "InferenceTest.ttl")));
 
             Graph empty = new Graph();
             empty.BaseUri = g.BaseUri;

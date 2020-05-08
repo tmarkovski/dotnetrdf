@@ -36,6 +36,7 @@ using VDS.RDF.Storage.Management;
 using VDS.RDF.Storage.Management.Provisioning;
 using VDS.RDF.Update;
 using VDS.RDF.Writing.Formatting;
+using System.IO;
 
 namespace VDS.RDF.Storage
 {
@@ -347,7 +348,7 @@ namespace VDS.RDF.Storage
                     "Version of Stardog being tested does not support configuring reasoning mode at connection level");
 
             Graph g = new Graph();
-            g.LoadFromFile("resources\\InferenceTest.ttl");
+            g.LoadFromFile(Path.Combine("resources", "InferenceTest.ttl"));
             g.BaseUri = new Uri("http://example.org/reasoning");
             stardog.SaveGraph(g);
 
@@ -389,7 +390,7 @@ namespace VDS.RDF.Storage
                     "Version of Stardog being tested does not support configuring reasoning mode at connection level");
 
             Graph g = new Graph();
-            g.LoadFromFile("resources\\stardog-reasoning-test.rdf");
+            g.LoadFromFile(Path.Combine("resources", "stardog-reasoning-test.rdf"));
             g.BaseUri = new Uri("http://www.reasoningtest.com/");
             stardog.SaveGraph(g);
 
@@ -422,7 +423,7 @@ namespace VDS.RDF.Storage
                     "Version of Stardog being tested does not support configuring reasoning mode at connection level");
 
             Graph g = new Graph();
-            g.LoadFromFile("resources\\stardog-reasoning-test.rdf");
+            g.LoadFromFile(Path.Combine("resources", "stardog-reasoning-test.rdf"));
             g.BaseUri = new Uri("http://www.reasoningtest.com/");
             stardog.SaveGraph(g);
 

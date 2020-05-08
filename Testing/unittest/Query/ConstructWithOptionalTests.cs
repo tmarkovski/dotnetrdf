@@ -33,6 +33,7 @@ using VDS.RDF.Query;
 using VDS.RDF.Query.Datasets;
 using VDS.RDF.Update;
 using VDS.RDF.Writing.Formatting;
+using System.IO;
 
 namespace VDS.RDF.Query
 {
@@ -136,7 +137,7 @@ namespace VDS.RDF.Query
         public void SparqlConstructWithOptional()
         {
             Graph g = new Graph();
-            g.LoadFromFile("resources\\InferenceTest.ttl");
+            g.LoadFromFile(Path.Combine("resources", "InferenceTest.ttl"));
 
             Graph expected = new Graph();
             expected.Assert(g.GetTriplesWithPredicate(g.CreateUriNode("rdf:type")));
@@ -151,7 +152,7 @@ namespace VDS.RDF.Query
         public void SparqlUpdateInsertWithOptional()
         {
             Graph g = new Graph();
-            g.LoadFromFile("resources\\InferenceTest.ttl");
+            g.LoadFromFile(Path.Combine("resources", "InferenceTest.ttl"));
             g.BaseUri = new Uri("http://example.org/vehicles/");
 
             Graph expected = new Graph();
@@ -167,7 +168,7 @@ namespace VDS.RDF.Query
         public void SparqlUpdateDeleteWithOptional()
         {
             Graph g = new Graph();
-            g.LoadFromFile("resources\\InferenceTest.ttl");
+            g.LoadFromFile(Path.Combine("resources", "InferenceTest.ttl"));
             g.BaseUri = new Uri("http://example.org/vehicles/");
 
             Graph def = new Graph();
@@ -192,7 +193,7 @@ namespace VDS.RDF.Query
         public void SparqlUpdateModifyWithOptional()
         {
             Graph g = new Graph();
-            g.LoadFromFile("resources\\InferenceTest.ttl");
+            g.LoadFromFile(Path.Combine("resources", "InferenceTest.ttl"));
             g.BaseUri = new Uri("http://example.org/vehicles/");
 
             Graph expected = new Graph();
@@ -208,7 +209,7 @@ namespace VDS.RDF.Query
         public void SparqlUpdateModifyWithOptional2()
         {
             Graph g = new Graph();
-            g.LoadFromFile("resources\\InferenceTest.ttl");
+            g.LoadFromFile(Path.Combine("resources", "InferenceTest.ttl"));
             g.BaseUri = new Uri("http://example.org/vehicles/");
 
             Graph def = new Graph();

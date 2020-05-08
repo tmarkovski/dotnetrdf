@@ -313,7 +313,7 @@ namespace VDS.RDF.JsonLd
 
         private static IEnumerable<object[]> ProcessManifest(string manifestPath, string skipTestsPath = null)
         {
-            var resourceDir = new DirectoryInfo("resources\\jsonld");
+            var resourceDir = new DirectoryInfo(Path.Combine("resources", "jsonld"));
             manifestPath = Path.Combine(resourceDir.FullName, manifestPath);
             var manifestJson = File.ReadAllText(manifestPath);
             var manifest = JObject.Parse(manifestJson);
@@ -372,7 +372,7 @@ namespace VDS.RDF.JsonLd
 
         private static IEnumerable<object[]> ProcessFromRdfManifest(string manifestPath, string skipTestsPath = null)
         {
-            var resourceDir = new DirectoryInfo("resources\\jsonld");
+            var resourceDir = new DirectoryInfo(Path.Combine("resources", "jsonld"));
             manifestPath = Path.Combine(resourceDir.FullName, manifestPath);
             var manifestJson = File.ReadAllText(manifestPath);
             var manifest = JObject.Parse(manifestJson);
@@ -426,7 +426,7 @@ namespace VDS.RDF.JsonLd
 
         private static IEnumerable<object[]> ProcessFrameManifest(string manifestPath, string skipTestsPath = null)
         {
-            var resourceDir = new DirectoryInfo("resources\\jsonld");
+            var resourceDir = new DirectoryInfo(Path.Combine("resources", "jsonld"));
             var skipTests = ReadSkipTests(skipTestsPath, resourceDir);
             manifestPath = Path.Combine(resourceDir.FullName, manifestPath);
             var manifestJson = File.ReadAllText(manifestPath);

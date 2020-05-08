@@ -34,6 +34,7 @@ using VDS.RDF.Query.Datasets;
 using VDS.RDF.Storage;
 using VDS.RDF.Update;
 using VDS.RDF.Writing;
+using System.IO;
 
 namespace VDS.RDF.Query
 {
@@ -268,7 +269,7 @@ namespace VDS.RDF.Query
 
             InMemoryDataset dataset = new InMemoryDataset();
             IGraph ex = new Graph();
-            FileLoader.Load(ex, "resources\\InferenceTest.ttl");
+            FileLoader.Load(ex, Path.Combine("resources", "InferenceTest.ttl"));
             ex.BaseUri = new Uri("http://example.org/graph");
             dataset.AddGraph(ex);
 
@@ -300,7 +301,7 @@ namespace VDS.RDF.Query
 
             InMemoryDataset dataset = new InMemoryDataset();
             IGraph ex = new Graph();
-            FileLoader.Load(ex, "resources\\InferenceTest.ttl");
+            FileLoader.Load(ex, Path.Combine("resources", "InferenceTest.ttl"));
             ex.BaseUri = new Uri("http://example.org/graph");
             dataset.AddGraph(ex);
 
@@ -330,7 +331,7 @@ namespace VDS.RDF.Query
 
             InMemoryDataset dataset = new InMemoryDataset(false);
             IGraph ex = new Graph();
-            FileLoader.Load(ex, "resources\\InferenceTest.ttl");
+            FileLoader.Load(ex, Path.Combine("resources", "InferenceTest.ttl"));
             ex.BaseUri = new Uri("http://example.org/graph");
             dataset.AddGraph(ex);
 
@@ -362,7 +363,7 @@ namespace VDS.RDF.Query
 
             InMemoryDataset dataset = new InMemoryDataset(false);
             IGraph ex = new Graph();
-            FileLoader.Load(ex, "resources\\InferenceTest.ttl");
+            FileLoader.Load(ex, Path.Combine("resources", "InferenceTest.ttl"));
             ex.BaseUri = new Uri("http://example.org/graph");
             dataset.AddGraph(ex);
 
@@ -392,7 +393,7 @@ namespace VDS.RDF.Query
 
             TripleStore store = new TripleStore();
             IGraph ex = new Graph();
-            FileLoader.Load(ex, "resources\\InferenceTest.ttl");
+            FileLoader.Load(ex, Path.Combine("resources", "InferenceTest.ttl"));
             ex.BaseUri = new Uri("http://example.org/named");
             store.Add(ex);
             IGraph ex2 = new Graph();

@@ -30,6 +30,7 @@ using System.Linq;
 using Xunit;
 using VDS.RDF.Parsing;
 using VDS.RDF.Writing;
+using System.IO;
 
 namespace VDS.RDF.Parsing
 {
@@ -57,7 +58,7 @@ namespace VDS.RDF.Parsing
         public void ParsingBaseUriAssignmentFileLoader()
         {
             Graph g = new Graph();
-            FileLoader.Load(g, "resources\\InferenceTest.ttl");
+            FileLoader.Load(g, Path.Combine("resources", "InferenceTest.ttl"));
             Console.WriteLine("Base URI: " + ShowBaseUri(g.BaseUri));
             Assert.NotNull(g.BaseUri);
         }

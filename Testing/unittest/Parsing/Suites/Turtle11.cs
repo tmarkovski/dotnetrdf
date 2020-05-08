@@ -180,14 +180,14 @@ namespace VDS.RDF.Parsing.Suites
             NTriplesFormatter formatter = new NTriplesFormatter();
 
             Graph ttl = new Graph();
-            ttl.LoadFromFile(@"resources\\turtle11\localName_with_non_leading_extras.ttl");
+            ttl.LoadFromFile(Path.Combine("resources", "turtle11", "localName_with_non_leading_extras.ttl"));
             Assert.False(ttl.IsEmpty);
             Console.WriteLine("Subject from Turtle: " + ttl.Triples.First().Subject.ToString(formatter));
 
             Graph nt = new Graph();
             NTriplesParser parser = new NTriplesParser();
             parser.Warning += TestTools.WarningPrinter;
-            nt.LoadFromFile(@"resources\\turtle11\localName_with_non_leading_extras.nt", parser);
+            nt.LoadFromFile(Path.Combine("resources", "turtle11", "localName_with_non_leading_extras.nt"), parser);
             Assert.False(nt.IsEmpty);
             Console.WriteLine("Subject from NTriples: " + nt.Triples.First().Subject.ToString(formatter));
 
@@ -216,7 +216,7 @@ namespace VDS.RDF.Parsing.Suites
         public void ParsingTurtleW3CLiteralEscapes1()
         {
             Graph g = new Graph();
-            g.LoadFromFile(@"resources\\turtle11\literal_with_escaped_BACKSPACE.ttl");
+            g.LoadFromFile(@Path.Combine("resources", "turtle11", "literal_with_escaped_BACKSPACE.ttl"));
             Assert.False(g.IsEmpty);
             Assert.Equal(1, g.Triples.Count);
             Triple t = g.Triples.First();
@@ -231,12 +231,12 @@ namespace VDS.RDF.Parsing.Suites
             NTriplesFormatter formatter = new NTriplesFormatter();
 
             Graph ttl = new Graph();
-            ttl.LoadFromFile(@"resources\\turtle11\LITERAL1_ascii_boundaries.ttl");
+            ttl.LoadFromFile(@Path.Combine("resources", "turtle11", "LITERAL1_ascii_boundaries.ttl"));
             Assert.False(ttl.IsEmpty);
             Console.WriteLine("Object from Turtle: " + ttl.Triples.First().Object.ToString(formatter));
 
             Graph nt = new Graph();
-            nt.LoadFromFile(@"resources\\turtle11\LITERAL1_ascii_boundaries.nt");
+            nt.LoadFromFile(@Path.Combine("resources", "turtle11", "LITERAL1_ascii_boundaries.nt"));
             Assert.False(nt.IsEmpty);
             Console.WriteLine("Object from NTriples: " + nt.Triples.First().Object.ToString(formatter));
 
@@ -248,7 +248,7 @@ namespace VDS.RDF.Parsing.Suites
         {
             Graph g = new Graph();
 
-            Assert.Throws<RdfParseException>(() => g.LoadFromFile(@"resources\\turtle11\turtle-syntax-bad-string-04.ttl"));
+            Assert.Throws<RdfParseException>(() => g.LoadFromFile(Path.Combine("resources", "turtle11", "turtle-syntax-bad-string-04.ttl")));
         }
 
         [Fact]

@@ -33,6 +33,7 @@ using VDS.RDF.Storage;
 using VDS.RDF.Writing.Contexts;
 using VDS.RDF.Writing.Formatting;
 using Xunit.Abstractions;
+using System.IO;
 
 namespace VDS.RDF.Writing
 {
@@ -396,7 +397,7 @@ namespace VDS.RDF.Writing
         public void WritingCollectionCompressionComplex2()
         {
             Graph g = new Graph();
-            g.LoadFromFile("resources\\complex-collections.nt");
+            g.LoadFromFile(Path.Combine("resources", "complex-collections.nt"));
 
             CompressingTurtleWriterContext context = new CompressingTurtleWriterContext(g, Console.Out);
             WriterHelper.FindCollections(context);

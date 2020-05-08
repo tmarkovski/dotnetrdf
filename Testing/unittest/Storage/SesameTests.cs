@@ -58,7 +58,7 @@ namespace VDS.RDF.Storage
         public void StorageSesameSaveLoad()
         {
             Graph g = new Graph();
-            FileLoader.Load(g, "resources\\InferenceTest.ttl");
+            FileLoader.Load(g, Path.Combine("resources", "InferenceTest.ttl"));
             g.BaseUri = new Uri("http://example.org/SesameTest");
 
             SesameHttpProtocolConnector sesame = SesameTests.GetConnection();
@@ -168,7 +168,7 @@ namespace VDS.RDF.Storage
         public void StorageSesameDeleteTriples1()
         {
             Graph g = new Graph();
-            FileLoader.Load(g, "resources\\InferenceTest.ttl");
+            FileLoader.Load(g, Path.Combine("resources", "InferenceTest.ttl"));
             g.BaseUri = new Uri("http://example.org/SesameTest");
 
             SesameHttpProtocolConnector sesame = SesameTests.GetConnection();
@@ -269,7 +269,7 @@ namespace VDS.RDF.Storage
             Uri graphUri = new Uri("http://example.org/Sesame/delete");
 
             Graph g = new Graph();
-            FileLoader.Load(g, "resources\\InferenceTest.ttl");
+            FileLoader.Load(g, Path.Combine("resources", "InferenceTest.ttl"));
             g.BaseUri = graphUri;
 
             sesame.SaveGraph(g);
@@ -295,7 +295,7 @@ namespace VDS.RDF.Storage
             sesame.DeleteGraph(graphUri);
 
             Graph g = new Graph();
-            FileLoader.Load(g, "resources\\InferenceTest.ttl");
+            FileLoader.Load(g, Path.Combine("resources", "InferenceTest.ttl"));
             g.BaseUri = graphUri;
 
             sesame.SaveGraph(g);

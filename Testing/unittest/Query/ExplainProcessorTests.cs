@@ -27,6 +27,7 @@ using System;
 using Xunit;
 using VDS.RDF.Parsing;
 using VDS.RDF.Writing.Formatting;
+using System.IO;
 
 namespace VDS.RDF.Query
 {
@@ -44,7 +45,7 @@ namespace VDS.RDF.Query
             {
                 TripleStore store = new TripleStore();
                 Graph g = new Graph();
-                g.LoadFromFile("resources\\InferenceTest.ttl");
+                g.LoadFromFile(Path.Combine("resources", "InferenceTest.ttl"));
                 g.BaseUri = null;
                 store.Add(g);
 

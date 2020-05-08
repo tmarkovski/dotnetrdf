@@ -31,6 +31,7 @@ using Xunit;
 using VDS.RDF.Parsing;
 using VDS.RDF.Query;
 using VDS.RDF.Storage;
+using System.IO;
 
 namespace VDS.RDF.Storage
 {
@@ -60,7 +61,7 @@ namespace VDS.RDF.Storage
         public void StorageAllegroGraphSaveLoad()
         {
             Graph g = new Graph();
-            FileLoader.Load(g, "resources\\InferenceTest.ttl");
+            FileLoader.Load(g, Path.Combine("resources", "InferenceTest.ttl"));
             g.BaseUri = new Uri("http://example.org/AllegroGraphTest");
 
             AllegroGraphConnector agraph = AllegroGraphTests.GetConnection();
@@ -167,7 +168,7 @@ namespace VDS.RDF.Storage
         public void StorageAllegroGraphDeleteTriples()
         {
             Graph g = new Graph();
-            FileLoader.Load(g, "resources\\InferenceTest.ttl");
+            FileLoader.Load(g, Path.Combine("resources", "InferenceTest.ttl"));
             g.BaseUri = new Uri("http://example.org/AllegroGraphTest");
 
             AllegroGraphConnector agraph = AllegroGraphTests.GetConnection();
@@ -203,7 +204,7 @@ namespace VDS.RDF.Storage
             Uri graphUri = new Uri("http://example.org/AllegroGraph/delete");
 
             Graph g = new Graph();
-            FileLoader.Load(g, "resources\\InferenceTest.ttl");
+            FileLoader.Load(g, Path.Combine("resources", "InferenceTest.ttl"));
             g.BaseUri = graphUri;
 
             agraph.SaveGraph(g);
@@ -229,7 +230,7 @@ namespace VDS.RDF.Storage
             agraph.DeleteGraph(graphUri);
 
             Graph g = new Graph();
-            FileLoader.Load(g, "resources\\InferenceTest.ttl");
+            FileLoader.Load(g, Path.Combine("resources", "InferenceTest.ttl"));
             g.BaseUri = graphUri;
 
             agraph.SaveGraph(g);

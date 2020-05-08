@@ -26,6 +26,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 using System;
 using Xunit;
 using VDS.RDF.Parsing;
+using System.IO;
 
 namespace VDS.RDF.Writing
 {
@@ -39,11 +40,11 @@ namespace VDS.RDF.Writing
             g.BaseUri = null;
             store.Add(g);
             g = new Graph();
-            g.LoadFromFile("resources\\InferenceTest.ttl");
+            g.LoadFromFile(Path.Combine("resources", "InferenceTest.ttl"));
             g.BaseUri = new Uri("http://example.org/graph");
             store.Add(g);
             g = new Graph();
-            g.LoadFromFile(@"resources\cyrillic.rdf");
+            g.LoadFromFile(Path.Combine("resources", "cyrillic.rdf"));
             g.BaseUri = new Uri("http://example.org/cyrillic");
             store.Add(g);
 

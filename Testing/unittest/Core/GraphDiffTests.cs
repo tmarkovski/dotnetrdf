@@ -30,6 +30,7 @@ using System.Text;
 using Xunit;
 using VDS.RDF.Parsing;
 using VDS.RDF.Writing.Formatting;
+using System.IO;
 
 namespace VDS.RDF
 {
@@ -41,7 +42,7 @@ namespace VDS.RDF
         {
             Graph g = new Graph();
             Graph h = new Graph();
-            g.LoadFromFile("resources\\InferenceTest.ttl");
+            g.LoadFromFile(Path.Combine("resources", "InferenceTest.ttl"));
             h = g;
 
             GraphDiffReport report = g.Difference(h);
@@ -55,8 +56,8 @@ namespace VDS.RDF
         {
             Graph g = new Graph();
             Graph h = new Graph();
-            g.LoadFromFile("resources\\InferenceTest.ttl");
-            h.LoadFromFile("resources\\Turtle.ttl");
+            g.LoadFromFile(Path.Combine("resources", "InferenceTest.ttl"));
+            h.LoadFromFile(Path.Combine("resources", "Turtle.ttl"));
 
             GraphDiffReport report = g.Difference(h);
             TestTools.ShowDifferences(report);
@@ -69,8 +70,8 @@ namespace VDS.RDF
         {
             Graph g = new Graph();
             Graph h = new Graph();
-            g.LoadFromFile("resources\\InferenceTest.ttl");
-            h.LoadFromFile("resources\\InferenceTest.ttl");
+            g.LoadFromFile(Path.Combine("resources", "InferenceTest.ttl"));
+            h.LoadFromFile(Path.Combine("resources", "InferenceTest.ttl"));
 
             GraphDiffReport report = g.Difference(h);
             TestTools.ShowDifferences(report);
@@ -83,8 +84,8 @@ namespace VDS.RDF
         {
             Graph g = new Graph();
             Graph h = new Graph();
-            g.LoadFromFile("resources\\InferenceTest.ttl");
-            h.LoadFromFile("resources\\InferenceTest.ttl");
+            g.LoadFromFile(Path.Combine("resources", "InferenceTest.ttl"));
+            h.LoadFromFile(Path.Combine("resources", "InferenceTest.ttl"));
 
             //Remove Triples about Ford Fiestas from 2nd Graph
             h.Retract(h.GetTriplesWithSubject(new Uri("http://example.org/vehicles/FordFiesta")).ToList());
@@ -101,8 +102,8 @@ namespace VDS.RDF
         {
             Graph g = new Graph();
             Graph h = new Graph();
-            g.LoadFromFile("resources\\InferenceTest.ttl");
-            h.LoadFromFile("resources\\InferenceTest.ttl");
+            g.LoadFromFile(Path.Combine("resources", "InferenceTest.ttl"));
+            h.LoadFromFile(Path.Combine("resources", "InferenceTest.ttl"));
 
             //Add additional Triple to 2nd Graph
             IUriNode spaceVehicle = h.CreateUriNode("eg:SpaceVehicle");
@@ -122,8 +123,8 @@ namespace VDS.RDF
         {
             Graph g = new Graph();
             Graph h = new Graph();
-            g.LoadFromFile("resources\\InferenceTest.ttl");
-            h.LoadFromFile("resources\\InferenceTest.ttl");
+            g.LoadFromFile(Path.Combine("resources", "InferenceTest.ttl"));
+            h.LoadFromFile(Path.Combine("resources", "InferenceTest.ttl"));
 
             //Add additional Triple to 2nd Graph
             INode blank = h.CreateBlankNode();
@@ -143,8 +144,8 @@ namespace VDS.RDF
         {
             Graph g = new Graph();
             Graph h = new Graph();
-            g.LoadFromFile("resources\\InferenceTest.ttl");
-            h.LoadFromFile("resources\\InferenceTest.ttl");
+            g.LoadFromFile(Path.Combine("resources", "InferenceTest.ttl"));
+            h.LoadFromFile(Path.Combine("resources", "InferenceTest.ttl"));
 
             //Remove MSG from 2nd Graph
             INode toRemove = h.Nodes.BlankNodes().FirstOrDefault();
@@ -174,7 +175,7 @@ namespace VDS.RDF
         public void GraphDiffNullReferenceA()
         {
             Graph g = new Graph();
-            g.LoadFromFile("resources\\InferenceTest.ttl");
+            g.LoadFromFile(Path.Combine("resources", "InferenceTest.ttl"));
 
             GraphDiff diff = new GraphDiff();
             GraphDiffReport report = diff.Difference(null, g);
@@ -189,7 +190,7 @@ namespace VDS.RDF
         public void GraphDiffNullReferenceB()
         {
             Graph g = new Graph();
-            g.LoadFromFile("resources\\InferenceTest.ttl");
+            g.LoadFromFile(Path.Combine("resources", "InferenceTest.ttl"));
 
             GraphDiffReport report = g.Difference(null);
             TestTools.ShowDifferences(report);
@@ -244,9 +245,9 @@ namespace VDS.RDF
         private static void TestGraphDiff(string testGraphName)
         {
             Graph a = new Graph();
-            a.LoadFromFile(string.Format("resources\\diff_cases\\{0}_a.ttl", testGraphName));
+            a.LoadFromFile(string.Format(Path.Combine("resources", "diff_cases", "{0}_a.ttl"), testGraphName));
             Graph b = new Graph();
-            b.LoadFromFile(string.Format("resources\\diff_cases\\{0}_b.ttl", testGraphName));
+            b.LoadFromFile(string.Format(Path.Combine("resources", "diff_cases", "{0}_b.ttl"), testGraphName));
 
             var diff = a.Difference(b);
 

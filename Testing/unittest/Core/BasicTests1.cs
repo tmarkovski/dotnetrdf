@@ -33,7 +33,8 @@ using Xunit;
 using VDS.RDF.Writing;
 using VDS.RDF.Parsing;
 using VDS.RDF.Query;
-#pragma warning disable 252,253
+using System.IO;
+#pragma warning disable 252, 253
 
 #pragma warning disable xUnit2000 // Expected value should be first
 #pragma warning disable xUnit2003 // Do not use Assert.Equal to check for null value
@@ -798,8 +799,8 @@ namespace VDS.RDF
             Graph h = new Graph();
             Assert.NotNull(g);
             Assert.NotNull(h);
-            ttlparser.Load(g, "resources\\MergePart1.ttl");
-            ttlparser.Load(h, "resources\\MergePart2.ttl");
+            ttlparser.Load(g, Path.Combine("resources", "MergePart1.ttl"));
+            ttlparser.Load(h, Path.Combine("resources", "MergePart2.ttl"));
 
             Console.WriteLine("Merge Test Data Loaded OK");
             Console.WriteLine();
@@ -837,7 +838,7 @@ namespace VDS.RDF
 
             //Need to reload g from disk
             g = new Graph();
-            ttlparser.Load(g, "resources\\MergePart1.ttl");
+            ttlparser.Load(g, Path.Combine("resources", "MergePart1.ttl"));
 
             //Do the actual merge
             i.Merge(g);
